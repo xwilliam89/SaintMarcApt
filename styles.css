@@ -7,7 +7,10 @@ body {
     color: #5a5a5a;
   }
   
-  
+.lower-five-percent {
+    margin-top: 5%;
+}
+
   /* CUSTOMIZE THE CAROUSEL
   -------------------------------------------------- */
   
@@ -94,6 +97,14 @@ body {
   .floorplan-image {
     max-height: 90%;
     max-width: 90%;
+  }
+
+
+  /* Amenities
+  ----------------------------------*/
+  .amenities-image {
+    object-fit: cover;
+    min-height: 100%;
   }
 
   /* RESPONSIVE CSS
