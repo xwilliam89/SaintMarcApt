@@ -76,6 +76,26 @@ body {
     object-fit: cover;
   }
   
+
+  
+  /* Floorplans
+  ----------------------------- */
+  
+  .floorplan-box {
+    margin-top: 5%;
+    padding-top: 10%;
+    padding-bottom: 10%;
+  }
+
+  .floorplan-box h2 {
+    font-weight: 400;
+  }
+
+  .floorplan-image {
+    max-height: 90%;
+    max-width: 90%;
+  }
+
   /* RESPONSIVE CSS
   -------------------------------------------------- */
   
