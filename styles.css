@@ -6,7 +6,11 @@ body {
     padding-bottom: 3rem;
     color: #5a5a5a;
   }
-  
+
+h2 {
+  font-weight: 400;
+}
+
 .lower-five-percent {
     margin-top: 5%;
 }
@@ -102,10 +106,24 @@ body {
 
   /* Amenities
   ----------------------------------*/
+
   .amenities-image {
     object-fit: cover;
     min-height: 100%;
   }
+
+
+    /* Contact Us
+  ----------------------------------*/
+  
+  .contact-us-form {
+    margin-top: 5%;
+  }
+  
+  .contact-us-form textarea {
+    resize: none;
+  }
+
 
   /* RESPONSIVE CSS
   -------------------------------------------------- */

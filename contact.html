@@ -52,45 +52,31 @@
         </nav>
     </header>
 
-    <!-- Floorplans -->
+
     <main>
 
-        <div class="container">
-            <div class="row justify-content-md-center">
-                <div class="col-lg-6 col-md-12 col-sm-12">
-                    <div class="text-center bg-light floorplan-box">
-                        <h2>Studio</h2>
-                        <p class="lead">Lorem ipsum dolor sit amet.</p>
-                        <img class="floorplan-image" src="images/Floorplan_Studio.png">
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-12 col-sm-12">
-                    <div class="text-center bg-light floorplan-box">
-                        <h2>1 Bed 1 Bath</h2>
-                        <p class="lead">Nunc ante est, vestibulum semper feugiat non.</p>
-                        <img class="floorplan-image" src="images/Floorplan_1B1B.png">
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="container lower-five-percent">
+            
+            <h2>To learn more about Saint Marc Apartment and schedule a visit, please register using the form and a member of our team will be in touch.</h2>
 
-        <div class="container">
-            <div class="row justify-content-md-center">
-                <div class="col-lg-6 col-md-12 col-sm-12">
-                    <div class="text-center bg-light floorplan-box">
-                        <h2>2 Bed 1 Bath</h2>
-                        <p class="lead">Phasellus vestibulum, lectus eu vulputate pulvinar.</p>
-                        <img class="floorplan-image" src="images/Floorplan_2B1B.png">
-                    </div>
+
+            <form class="contact-us-form" action="" method="POST">
+                <div class="mb-3">
+                    <label class="form-label">Name</label>
+                    <input class="form-control" name="name" required>
+                  </div>
+                <div class="mb-3">
+                  <label class="form-label">Email Address</label>
+                  <input type="email" class="form-control" name="emailAddress" required>
+                  <div class="form-text">* We'll never share your email with anyone else.</div>
                 </div>
-                <div class="col-lg-6 col-md-12 col-sm-12">
-                    <div class="text-center bg-light floorplan-box">
-                        <h2>2 Bed 2 Bath</h2>
-                        <p class="lead">Vivamus cursus nisl quis quam feugiat molestie.</p>
-                        <img class="floorplan-image" src="images/Floorplan_2B2B.png">
-                    </div>
+                <div class="mb-3">
+                  <label class="form-label">Message</label>
+                  <textarea name="message" class="form-control" required rows="5"></textarea>
                 </div>
-            </div>
+                <button type="submit" class="btn btn-dark">Submit</button>
+            </form>
+
         </div>
 
     </main>
