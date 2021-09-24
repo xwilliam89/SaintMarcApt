@@ -1,4 +1,5 @@
-// Load Module Needed
+// Load Modules Needed
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
@@ -12,6 +13,7 @@ app.use(express.static("public"));
 
 
 // Routes
+
 app.get("/", function(req, res) {
     res.render("home");
 });
@@ -26,6 +28,6 @@ app.post("/contactUs", function(req, res) {
 
 //Start Server
 
-app.listen(3000, function() {
+app.listen(process.env.PORT || 3000, function() {
     console.log("Server started.");
 });
