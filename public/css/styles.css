@@ -6,6 +6,10 @@ body {
     color: #5a5a5a;
 }
 
+section {
+    margin-bottom: 1rem;
+}
+
 .featurette-divider {
     margin: 5rem 0;
     /* Space out the Bootstrap <hr> more */
@@ -114,8 +118,8 @@ body {
 /* Footer
   ----------------------------------*/
 
-#footer {
-    padding-bottom: 3rem;
+.footer {
+    padding: 3rem 0;
     color: #fff;
 }
 

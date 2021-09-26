@@ -20,8 +20,7 @@ app.get("/", function(req, res) {
 
 
 app.post("/contactUs", function(req, res) {
-
-    res.redirect("/");
+    res.render("message-sent");
 })
 
 
