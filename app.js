@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
 const inqueryRoute = require(__dirname + "/routes/inquiryRoute");
+const signInRoute = require(__dirname + "/routes/signInRoute");
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.get("/", function(req, res) {
 
 app.use(inqueryRoute);
 
+app.use(signInRoute);
 
 // Start Server
 app.listen(process.env.PORT || 3000, function() {

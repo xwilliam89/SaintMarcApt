@@ -1,0 +1,15 @@
+<%- include('partials/header'); -%>
+
+<%- include('partials/navbar-generic'); -%>
+
+<main class="container pt-4">
+    <div class="p-5 bg-light rounded">
+        <h2> <%= feedback.title %> </h2>
+        <p> <%= feedback.message %> </p>
+        <a class="btn btn-dark btn-lg" href="<%= feedback.buttonLink %>">
+            <%= feedback.buttonText %> 
+        </a>
+    </div>
+</main>
+
+<%- include('partials/footer'); -%>
