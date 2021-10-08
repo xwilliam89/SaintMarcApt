@@ -6,6 +6,7 @@ const ejs = require("ejs");
 const mongoose = require("mongoose");
 const inqueryRoute = require(__dirname + "/routes/inquiryRoute");
 const signInRoute = require(__dirname + "/routes/signInRoute");
+const userRoute = require(__dirname + "/routes/userRoute")
 
 const app = express();
 
@@ -28,6 +29,20 @@ app.get("/", function(req, res) {
 app.use(inqueryRoute);
 
 app.use(signInRoute);
+
+app.use("/user", userRoute);
+
+// 404 page
+app.use(function(req, res) {
+    let feedback = {
+        title: "404",
+        message: "The page you requested is not found.",
+        buttonLink: "/",
+        buttonText: "Back"
+    }
+    
+    res.render("feedback", {feedback: feedback});
+});
 
 // Start Server
 app.listen(process.env.PORT || 3000, function() {
