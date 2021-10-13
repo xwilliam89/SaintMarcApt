@@ -1,33 +1,31 @@
 const mongoose = require("mongoose");
+const passportLocalMongoose = require("passport-local-mongoose");
+
 
 const userSchema = new mongoose.Schema({
-    firstName: {
-        type: String,
-        required: true
-    },
-    lastName: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true
+    username: {
+        type: String
     },
     password: {
-        type: String,
-        required: true
+        type: String
+    },
+    firstName: {
+        type: String
+    },
+    lastName: {
+        type: String
+    },
+    email: {
+        type: String
     },
     phone: {
-        type: String,
-        required: true
+        type: String
     },
     address: {
-        type: String,
-        required: true
+        type: String
     },
     status: {
-        type: String,
-        required: true
+        type: String
     },
     created_on: {
         type: Date,
@@ -38,6 +36,8 @@ const userSchema = new mongoose.Schema({
         default: Date.now
     }
 });
+
+userSchema.plugin(passportLocalMongoose);
 
 const User = mongoose.model("User", userSchema);
 

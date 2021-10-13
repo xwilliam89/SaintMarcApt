@@ -4,12 +4,13 @@ const express = require("express");
 const router = express.Router();
 const userController = require("../controllers/userController");
 
-
 // Routes
 
-router.get("/register", userController.user_create_get);
+router.get("/user", userController.user_index);
 
-router.post("/register", userController.user_create_post);
+router.get("/user/register", userController.user_create_get);
+
+router.post("/user/register", userController.user_create_post);
 
 
 // Export
