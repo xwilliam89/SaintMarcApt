@@ -12,6 +12,7 @@ router.get("/user/register", userController.user_create_get);
 
 router.post("/user/register", userController.user_create_post);
 
+router.get("/user/profile", userController.user_update_get);
 
 // Export
 

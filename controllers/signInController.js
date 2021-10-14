@@ -16,14 +16,14 @@ const signin_get = function(req, res) {
     if (req.isAuthenticated()) {
         res.redirect("/user");
     } else {
-        res.redirect("/sign-in");
+        res.render("sign-in");
     }
 }
 
 const signin_post = function(req, res) {
 
     const user = new User({
-        username: req.body.username,
+        email: req.body.email.toLowerCase(),
         password: req.body.password
     });
 
@@ -39,10 +39,16 @@ const signin_post = function(req, res) {
 
 }
 
+const signout_get = function(req, res) {
+    req.logout();
+    res.redirect("/");
+}
+
 
 // Export
 
 module.exports = {
     signin_get,
-    signin_post
+    signin_post,
+    signout_get
 };
