@@ -12,7 +12,7 @@ passport.deserializeUser(User.deserializeUser());
 
 // Controllers
 
-const signin_get = function(req, res) {
+const signin_get = function (req, res) {
     if (req.isAuthenticated()) {
         res.redirect("/user");
     } else {
@@ -20,26 +20,33 @@ const signin_get = function(req, res) {
     }
 }
 
-const signin_post = function(req, res) {
-
-    const user = new User({
-        email: req.body.email.toLowerCase(),
-        password: req.body.password
-    });
-
-    req.login(user, function(err){
-        if (err) {
-            res.redirect("/sign-in");
-        } else {
-            passport.authenticate("local")(req, res, function(){
-                res.redirect("/user");
-            });
+const signin_post = function (req, res, next) {
+    let feedback = {
+        title: "Sign In Failed!",
+        message: "Unknown error. Please contact the administrator.",
+        buttonLink: "/sign-in",
+        buttonText: "Try again"
+    }
+    
+    passport.authenticate('local', function (err, user, info) {
+        if (err) { 
+            return res.render("feedback", {feedback: feedback});
         }
-    });
-
+        if (!user) { 
+            feedback.message = info.message;
+            return res.render("feedback", {feedback: feedback});
+        }
+        req.logIn(user, function (err) {
+            if (err) { 
+                feedback.message = info.message;
+                return res.render("feedback", {feedback: feedback});
+            }
+            return res.redirect('/user');
+        });
+    })(req, res, next);
 }
 
-const signout_get = function(req, res) {
+const signout_get = function (req, res) {
     req.logout();
     res.redirect("/");
 }
