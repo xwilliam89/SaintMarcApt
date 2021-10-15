@@ -14,6 +14,8 @@ router.post("/user/register", userController.user_create_post);
 
 router.get("/user/profile", userController.user_update_get);
 
+router.post("/user/profile", userController.user_update_post);
+
 // Export
 
 module.exports = router;

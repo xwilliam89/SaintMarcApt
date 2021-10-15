@@ -58,12 +58,59 @@ const user_create_post = function (req, res) {
 
 const user_update_get = function (req, res) {
   if (req.isAuthenticated()) {
-    res.render("user-profile");
+    User.findOne({_id: req.user._id}, function(err, foundUser){
+      if(!err){
+        res.render("user-profile", {user: foundUser});
+      }
+    });
+    
   } else {
     res.redirect("/sign-in");
   }
 }
 
+
+const user_update_post = function (req, res) {
+
+  let feedback = {
+    title: "Profile Updated",
+    message: "Your information has been updated.",
+    buttonLink: "/user",
+    buttonText: "Back"
+  }
+
+  const query = {_id: req.user._id};
+  const update = {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    phone: req.body.phone,
+    address: req.body.address,
+    address2: req.body.address2,
+    city: req.body.city,
+    state: req.body.state,
+    zip: req.body.zip,
+    paymentMethod: req.body.paymentMethod,
+    ccName: req.body.ccName,
+    ccNumber: req.body.ccNumber,
+    ccExpiration :req.body.ccExpiration,
+    ccCvv :req.body.ccCvv
+  };
+
+  User.findOneAndUpdate(query, update, function(err){
+    if (!err) {
+      res.render("feedback", {feedback: feedback});
+    } else {
+      feedback.title = "Update Failed!";
+      feedback.message = err.message;
+      feedback.buttonLink = "/user/profile";
+      feedback.buttonText = "Try again";
+      res.render("feedback", {feedback: feedback});
+    }
+  });
+
+
+}
 
 // Export
 
@@ -71,5 +118,6 @@ module.exports = {
   user_index,
   user_create_get,
   user_create_post,
-  user_update_get
+  user_update_get,
+  user_update_post
 };

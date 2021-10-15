@@ -18,6 +18,33 @@ const userSchema = new mongoose.Schema({
     address: {
         type: String
     },
+    address2: {
+        type: String
+    },
+    city: {
+        type: String
+    },
+    state: {
+        type: String
+    },
+    zip: {
+        type: String
+    },
+    paymentMethod: {
+        type: String
+    },
+    ccName: {
+        type: String
+    },
+    ccNumber: {
+        type: String
+    },
+    ccExpiration: {
+        type: Number
+    },
+    ccCvv: {
+        type: Number
+    },
     status: {
         type: String
     },
