@@ -8,7 +8,8 @@ const session = require("express-session");
 const passport = require("passport");
 const inqueryRoute = require(__dirname + "/routes/inquiryRoute");
 const signInRoute = require(__dirname + "/routes/signInRoute");
-const userRoute = require(__dirname + "/routes/userRoute")
+const userRoute = require(__dirname + "/routes/userRoute");
+const adminRoute = require(__dirname + "/routes/adminRoute");
 const app = express();
 
 app.set("view engine", "ejs");
@@ -41,6 +42,8 @@ app.use(inqueryRoute);
 app.use(signInRoute);
 
 app.use(userRoute);
+
+app.use(adminRoute);
 
 // 404 page
 app.use(function(req, res) {

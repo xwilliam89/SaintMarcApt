@@ -50,6 +50,9 @@ const userSchema = new mongoose.Schema({
     status: {
         type: String
     },
+    role: {
+        type: String
+    },
     created_on: {
         type: Date,
         default: Date.now

@@ -1,0 +1,21 @@
+<%- include('partials/header'); -%>
+
+<%- include('partials/navbar-admin'); -%>
+
+<main class="container pt-4">
+    <div class="p-5 bg-light rounded">
+        <h2>Are You Sure?</h2>
+        <p> <%= confirm.message %> </p>
+        <form action="<%= confirm.proceedLink %>" method="POST">
+            <a class="m-2 btn btn-dark btn-lg" href="<%= confirm.cancelLink %>">
+                <%= confirm.cancelText %> 
+            </a>
+            <button class="m-2 btn btn-danger btn-lg" type="submit">
+                <%= confirm.proceedText %> 
+            </button>
+        </form>
+        
+    </div>
+</main>
+
+<%- include('partials/footer'); -%>
