@@ -3,6 +3,7 @@
 const express = require("express");
 const router = express.Router();
 const adminController = require("../controllers/adminController");
+const inquiryController = require("../controllers/inquiryController");
 
 // Routes
 
@@ -17,6 +18,10 @@ router.post("/admin/users/:_id", adminController.admin_user_update_post);
 router.get("/admin/users/delete/:_id", adminController.admin_user_delete_get);
 
 router.post("/admin/users/delete/:_id", adminController.admin_user_delete_post);
+
+router.get("/admin/inquiries", inquiryController.inquiry_index);
+
+router.post("/admin/inquiries/process/:_id", inquiryController.inquiry_update_post);
 
 // Export
 

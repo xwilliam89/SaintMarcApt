@@ -34,9 +34,41 @@ const inquiry_create_post = async function(req, res) {
     res.render("feedback", {feedback: feedback});
 };
 
+const inquiry_index = function(req, res) {
+    if (req.isAuthenticated()) {
+        Inquiry.find({status: "new"}, function(err, foundInquiries){
+          if(!err){
+            res.render("inquiries", {inquiries: foundInquiries});
+          }
+        });
+        
+      } else {
+        res.redirect("/admin-sign-in");
+      }
+}
+
+const inquiry_update_post = function (req, res) {
+  
+    const query = {_id: req.params._id};
+    const update = {
+      status: "proccessed",
+      changed_on: Date.now()
+    };
+  
+    Inquiry.findOneAndUpdate(query, update, function(err){
+      if (!err) {
+        res.redirect("/admin/inquiries");
+      } else {
+        console.log(err);
+      }
+    });
+  
+}
 
 // Export
 
 module.exports = {
-    inquiry_create_post
+    inquiry_create_post,
+    inquiry_index,
+    inquiry_update_post
 };
