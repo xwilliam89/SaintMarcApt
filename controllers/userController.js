@@ -15,12 +15,12 @@ passport.deserializeUser(User.deserializeUser());
 const user_index = function (req, res) {
 
   if (req.isAuthenticated()) {
-    User.findOne({_id: req.user._id}, function(err, foundUser){
-      if(!err){
-        res.render("user", {user: foundUser});
+    User.findOne({ _id: req.user._id }, function (err, foundUser) {
+      if (!err) {
+        res.render("user", { user: foundUser });
       }
     });
-    
+
   } else {
     res.redirect("/sign-in");
   }
@@ -42,28 +42,37 @@ const user_create_post = function (req, res) {
     buttonText: "Try again"
   }
 
-  User.register({email:req.body.email}, req.body.password, function(err, user) {
-    if (err) {
-      feedback.message = err.message;
-      res.render("feedback", {feedback: feedback});
-    } else {
-      passport.authenticate("local")(req, res, function () {
-        res.redirect("/user");
-      });
-    }
-  });
+  User.register(
+    { 
+      email: req.body.email,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      role:"guest",
+      status:"active"
+    },
+    req.body.password, 
+    function (err, user) {
+      if (err) {
+        feedback.message = err.message;
+        res.render("feedback", { feedback: feedback });
+      } else {
+        passport.authenticate("local")(req, res, function () {
+          res.redirect("/user");
+        });
+      }
+    });
 
 }
 
 
 const user_update_get = function (req, res) {
   if (req.isAuthenticated()) {
-    User.findOne({_id: req.user._id}, function(err, foundUser){
-      if(!err){
-        res.render("user-profile", {user: foundUser});
+    User.findOne({ _id: req.user._id }, function (err, foundUser) {
+      if (!err) {
+        res.render("user-profile", { user: foundUser });
       }
     });
-    
+
   } else {
     res.redirect("/sign-in");
   }
@@ -79,7 +88,7 @@ const user_update_post = function (req, res) {
     buttonText: "Back"
   }
 
-  const query = {_id: req.user._id};
+  const query = { _id: req.user._id };
   const update = {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
@@ -93,19 +102,19 @@ const user_update_post = function (req, res) {
     paymentMethod: req.body.paymentMethod,
     ccName: req.body.ccName,
     ccNumber: req.body.ccNumber,
-    ccExpiration :req.body.ccExpiration,
-    ccCvv :req.body.ccCvv
+    ccExpiration: req.body.ccExpiration,
+    ccCvv: req.body.ccCvv
   };
 
-  User.findOneAndUpdate(query, update, function(err){
+  User.findOneAndUpdate(query, update, function (err) {
     if (!err) {
-      res.render("feedback", {feedback: feedback});
+      res.render("feedback", { feedback: feedback });
     } else {
       feedback.title = "Update Failed!";
       feedback.message = err.message;
       feedback.buttonLink = "/user/profile";
       feedback.buttonText = "Try again";
-      res.render("feedback", {feedback: feedback});
+      res.render("feedback", { feedback: feedback });
     }
   });
 

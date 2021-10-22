@@ -136,13 +136,21 @@ section {
   z-index: 2;
 }
 
-.form-signin input[type="email"] {
+.form-signin .first-input {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
 
-.form-signin input[type="password"] {
+.form-signin .middle-input {
+  margin-bottom: -1px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin .last-input {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
