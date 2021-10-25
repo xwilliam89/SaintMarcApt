@@ -5,6 +5,7 @@
 const passport = require("passport");
 const User = require("../models/user");
 
+
 passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
@@ -14,16 +15,11 @@ passport.deserializeUser(User.deserializeUser());
 
 const user_index = function (req, res) {
 
-  if (req.isAuthenticated()) {
-    User.findOne({ _id: req.user._id }, function (err, foundUser) {
-      if (!err) {
-        res.render("user", { user: foundUser });
-      }
-    });
-
-  } else {
-    res.redirect("/sign-in");
-  }
+  User.findOne({ _id: req.user._id }, function (err, foundUser) {
+    if (!err) {
+      res.render("user", { user: foundUser });
+    }
+  });
 
 }
 
@@ -43,14 +39,14 @@ const user_create_post = function (req, res) {
   }
 
   User.register(
-    { 
+    {
       email: req.body.email,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
-      role:"guest",
-      status:"active"
+      role: "guest",
+      status: "active"
     },
-    req.body.password, 
+    req.body.password,
     function (err, user) {
       if (err) {
         feedback.message = err.message;
@@ -66,16 +62,13 @@ const user_create_post = function (req, res) {
 
 
 const user_update_get = function (req, res) {
-  if (req.isAuthenticated()) {
-    User.findOne({ _id: req.user._id }, function (err, foundUser) {
-      if (!err) {
-        res.render("user-profile", { user: foundUser });
-      }
-    });
 
-  } else {
-    res.redirect("/sign-in");
-  }
+  User.findOne({ _id: req.user._id }, function (err, foundUser) {
+    if (!err) {
+      res.render("user-profile", { user: foundUser });
+    }
+  });
+
 }
 
 
@@ -120,6 +113,7 @@ const user_update_post = function (req, res) {
 
 
 }
+
 
 // Export
 
