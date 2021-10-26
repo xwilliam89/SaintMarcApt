@@ -15,6 +15,7 @@ function checkUserAuth(req, res, next) {
     }
 
     if (req.user.status !== "active") {
+        req.logout();
         res.status(403);
         feedback.message = "You account is disabled. Please contact your administrator for help.";
         return res.render("feedback", {feedback: feedback});
@@ -39,6 +40,7 @@ function checkAdminAuth(req, res, next) {
     }
 
     if (req.user.status !== "active") {
+        req.logout();
         res.status(403);
         feedback.message = "You account is disabled. Please contact your administrator for help.";
         return res.render("feedback", {feedback: feedback});
@@ -52,6 +54,8 @@ function checkAdminAuth(req, res, next) {
 
     next();
 }
+
+
 // Export
 
 module.exports = {
