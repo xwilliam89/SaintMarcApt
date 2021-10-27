@@ -1,0 +1,64 @@
+<%- include('partials/header'); -%>
+
+<%- include('partials/navbar-user'); -%>
+
+<main class="container py-5">
+
+
+<form class="needs-validation" novalidate action="#" method="POST">
+
+    <h4 class="mb-3">Application</h4>
+    <div class="row g-3">
+
+        <div class="col-md-4">
+            <label for="floorPlan" class="form-label">Floor Plan</label>
+            <select class="form-select" name="floorPlan" required>
+                <option value="">Choose...</option>
+
+                <% const floorPlanOptions = ["Studio", "1 Bed 1 Bath", "2 Bed 1 Bath", "2 Bed 2 Bath"]; %>
+                <% for ( let i = 0; i < floorPlanOptions.length; i++ ) { %>
+                    <option value='<%= floorPlanOptions[i] %>'><%= floorPlanOptions[i] %></option>
+                <% } %>
+
+            </select>
+            <div class="invalid-feedback">
+                Please select your desired floor plan.
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <label for="startDate" class="form-label">Start Date</label>
+            <input type="date" class="form-control" name="startDate" placeholder="" required>
+            <div class="invalid-feedback">
+                Please enter a valid start date.
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <label for="endDate" class="form-label">End Date</label>
+            <input type="date" class="form-control" name="endDate" placeholder="" required>
+            <div class="invalid-feedback">
+                Please enter a valid end date.
+            </div>
+        </div>
+
+    </div>
+
+    <hr class="my-4">
+
+    <div class="row g-3">
+        <div class="col-md-6">
+            <button class="w-100 btn btn-success btn-lg" type="submit">Submit</button>
+        </div>
+        <div class="col-md-6">
+            <a class="w-100 btn btn-outline-dark btn-lg" href="/user/leases" role="button">Cancel</a>
+        </div>
+    </div>
+</form>
+
+
+</main>
+
+<script src="/scripts/form-validation.js"></script>
+
+<%- include('partials/footer'); -%>

@@ -1,0 +1,54 @@
+<%- include('partials/header'); -%>
+
+<%- include('partials/navbar-user'); -%>
+
+<main class="container pt-5">
+
+    <% if (leases.length === 0) { %>
+        <div class="p-5 bg-light rounded">
+            <h2>No Lease</h2>
+            <p>You don't have any lease.</p>
+            <a class="btn btn-success btn-lg" href="/user/leases/apply">
+                Apply for New Lease
+            </a>
+        </div>
+        <% } else { %>
+
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-4">
+            <thead class="table-light">
+                <tr>
+                    <th scope="col">Room</th>
+                    <th scope="col">Tenants</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Start Date</th>
+                    <th scope="col">End Date</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <% leases.forEach(function(lease) { %>
+                    <tr>
+                        <td><%=lease.apartment%></td>
+                        <td><%=lease.tenants.firstName%> <%=lease.tenants.lastName%></td>
+                        <td><%=lease.status%></td>
+                        <td><%=lease.startDate.toISOString().split('T')[0] %></td>
+                        <td><%=lease.endDate.toISOString().split('T')[0] %></td>
+                    </tr>
+                <% }) %>
+
+            </tbody>
+        </table>
+    </div>
+    
+    <div>
+        <a class="btn btn-outline-success btn-sm" href="/user/leases/apply">
+            Apply for New Lease
+        </a>
+    </div>
+
+    <% } %>
+    
+</main>
+
+<%- include('partials/footer'); -%>
