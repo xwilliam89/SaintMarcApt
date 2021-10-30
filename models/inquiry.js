@@ -15,8 +15,7 @@ const inquirySchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        required: true,
-        default: "New"
+        required: true
     },
     created_on: {
         type: Date,

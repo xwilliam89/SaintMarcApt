@@ -12,7 +12,8 @@ const inquiry_create_post = async function(req, res) {
     const inquiry = new Inquiry ({
         name: req.body.name,
         email: req.body.emailAddress,
-        message: req.body.message
+        message: req.body.message,
+        status: "new"
     });
 
     let feedback = {
