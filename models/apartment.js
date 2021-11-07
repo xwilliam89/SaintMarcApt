@@ -8,16 +8,16 @@ const apartmentSchema = new mongoose.Schema({
         type: String
     },
     bedRoom: {
-        type: Double
+        type: Number
     },
     bathRoom: {
-        type: Double
+        type: Number
     },
     balcony: {
-        type: Double
+        type: Number
     },
     size:  {
-        type: Double
+        type: Number
     },
     status: {
         type: String

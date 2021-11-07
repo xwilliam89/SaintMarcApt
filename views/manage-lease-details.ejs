@@ -1,0 +1,94 @@
+<%- include('partials/header'); -%>
+
+<%- include('partials/navbar-admin'); -%>
+
+<main class="container py-5">
+
+
+<form class="needs-validation" novalidate action="#" method="POST">
+
+    <div class="row g-3">
+
+        <div class="col-md-6">
+            <label for="name" class="form-label">Tenant Name</label>
+            <input type="text" class="form-control" name="name" placeholder=""
+                value="<%=lease.tenants.firstName%> <%=lease.tenants.lastName%>" disabled>
+        </div>
+
+        <div class="col-md-6">
+            <label for="email" class="form-label">Tenant Email</label>
+            <input type="email" class="form-control" name="email" placeholder=""
+                value="<%=lease.tenants.email%>" disabled>
+        </div>
+
+        <div class="col-md-4">
+            <label for="roomNumber" class="form-label">Room Number</label>
+            <input type="text" class="form-control" name="roomNumber" placeholder=""
+                value="<%=lease.apartment.roomNumber%>" >
+            <div class="invalid-feedback">
+                Room number is required.
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <label for="floorPlan" class="form-label">Floor Plan</label>
+            <input type="text" class="form-control" name="floorPlan" placeholder=""
+            value="<%=lease.apartment.floorPlan%>" disabled>
+        </div>
+
+        <div class="col-md-4">
+            <label for="status" class="form-label">Lease Status</label>
+            <select class="form-select" name="status" required>
+                <option value="">Choose...</option>
+
+                <% const statusOptions = ["pending", "rejected", "active", "expired"]; %>
+                <% for ( let i = 0; i < statusOptions.length; i++ ) { %>
+                    <% if (statusOptions[i]==lease.status) { %>
+                        <option value='<%= statusOptions[i] %>' selected><%= statusOptions[i] %></option>
+                    <% } else { %>
+                        <option value='<%= statusOptions[i] %>'><%= statusOptions[i] %></option>
+                    <% } %>
+                <% } %>
+
+            </select>
+            <div class="invalid-feedback">
+                Please select a status.
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <label for="startDate" class="form-label">Start Date</label>
+            <input type="date" class="form-control" name="startDate" placeholder="" value="<%= lease.startDate.toISOString().split('T')[0] %>" required>
+            <div class="invalid-feedback">
+                Please enter a valid start date.
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <label for="endDate" class="form-label">End Date</label>
+            <input type="date" class="form-control" name="endDate" placeholder="" value="<%= lease.endDate.toISOString().split('T')[0] %>" required>
+            <div class="invalid-feedback">
+                Please enter a valid end date.
+            </div>
+        </div>
+    
+    </div>
+
+    <hr class="my-4">
+
+    <div class="row g-3">
+        <div class="col-md-6">
+            <button class="w-100 btn btn-success btn-lg" type="submit">Update</button>
+        </div>
+        <div class="col-md-6">
+            <a class="w-100 btn btn-outline-dark btn-lg" href="/user/leases" role="button">Cancel</a>
+        </div>
+    </div>
+</form>
+
+
+</main>
+
+<script src="/scripts/form-validation.js"></script>
+
+<%- include('partials/footer'); -%>

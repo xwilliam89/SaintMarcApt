@@ -1,16 +1,13 @@
 <%- include('partials/header'); -%>
 
-<%- include('partials/navbar-user'); -%>
+<%- include('partials/navbar-admin'); -%>
 
 <main class="container pt-5">
 
     <% if (leases.length === 0) { %>
         <div class="p-5 bg-light rounded">
             <h2>No Lease</h2>
-            <p>You don't have any lease.</p>
-            <a class="btn btn-success btn-lg" href="/user/leases/apply">
-                Apply for New Lease
-            </a>
+            <p>There isn't any lease yet.</p>
         </div>
         <% } else { %>
 
@@ -23,6 +20,7 @@
                     <th scope="col">Status</th>
                     <th scope="col">Start Date</th>
                     <th scope="col">End Date</th>
+                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,17 +32,14 @@
                         <td><%=lease.status%></td>
                         <td><%=lease.startDate.toISOString().split('T')[0] %></td>
                         <td><%=lease.endDate.toISOString().split('T')[0] %></td>
+                        <td>
+                            <a class="m-1 btn btn-outline-success btn-sm" href="/admin/leases/<%=lease._id%>" role="button">Edit</a>
+                        </td>
                     </tr>
                 <% }) %>
 
             </tbody>
         </table>
-    </div>
-    
-    <div>
-        <a class="btn btn-outline-success btn-sm" href="/user/leases/apply">
-            Apply for New Lease
-        </a>
     </div>
 
     <% } %>
