@@ -21,22 +21,29 @@
                 value="<%=lease.tenants.email%>" disabled>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-6">
             <label for="roomNumber" class="form-label">Room Number</label>
-            <input type="text" class="form-control" name="roomNumber" placeholder=""
-                value="<%=lease.apartment.roomNumber%>" >
+            <select class="form-select" name="apt" required>
+
+                <% const aptOption = availableApts; %>
+                <% for ( let i = 0; i < aptOption.length; i++ ) { %>
+                    <% if (lease.apartment._id.toString() === aptOption[i]._id.toString()) { %>
+                        <option value='<%= aptOption[i]._id %>' selected><%=aptOption[i].roomNumber%> <%=aptOption[i].floorPlan%></option>
+                    <% } else { %>
+                        <option value='<%= aptOption[i]._id %>'><%=aptOption[i].roomNumber%> <%=aptOption[i].floorPlan%></option>
+                    <% } %>
+                <% } %>
+
+            </select>
             <div class="invalid-feedback">
                 Room number is required.
             </div>
         </div>
 
-        <div class="col-md-4">
-            <label for="floorPlan" class="form-label">Floor Plan</label>
-            <input type="text" class="form-control" name="floorPlan" placeholder=""
-            value="<%=lease.apartment.floorPlan%>" disabled>
-        </div>
+        <!--include the old apt in the form, so that it can be set back to available-->
+        <input type="hidden" name="oldApt" value="<%=lease.apartment._id%>"></input>
 
-        <div class="col-md-4">
+        <div class="col-md-6">
             <label for="status" class="form-label">Lease Status</label>
             <select class="form-select" name="status" required>
                 <option value="">Choose...</option>
@@ -81,7 +88,7 @@
             <button class="w-100 btn btn-success btn-lg" type="submit">Update</button>
         </div>
         <div class="col-md-6">
-            <a class="w-100 btn btn-outline-dark btn-lg" href="/user/leases" role="button">Cancel</a>
+            <a class="w-100 btn btn-outline-dark btn-lg" href="/admin/leases" role="button">Cancel</a>
         </div>
     </div>
 </form>
