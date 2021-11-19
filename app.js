@@ -11,6 +11,7 @@ const signInRoute = require(__dirname + "/routes/signInRoute");
 const userRoute = require(__dirname + "/routes/userRoute");
 const adminRoute = require(__dirname + "/routes/adminRoute");
 const leaseRoute = require(__dirname + "/routes/leaseRoute");
+const requestRoute = require(__dirname + "/routes/requestRoute");
 const app = express();
 
 app.set("view engine", "ejs");
@@ -47,6 +48,8 @@ app.use(userRoute);
 app.use(adminRoute);
 
 app.use(leaseRoute);
+
+app.use(requestRoute);
 
 // 404 page
 app.use(function(req, res) {

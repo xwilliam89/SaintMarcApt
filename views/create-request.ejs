@@ -1,0 +1,56 @@
+<%- include('partials/header'); -%>
+
+<%- include('partials/navbar-user'); -%>
+
+<main class="container py-5">
+
+
+<form class="needs-validation" novalidate action="/user/requests/create-request" method="POST">
+
+    <h4 class="mb-3">Create New Request</h4>
+
+
+        <div class="mb-3">
+            <label class="form-label">For which apartment are you requesting service?</label>
+            <select class="form-select" name="apartment" required>
+                <option value="">Choose...</option>
+
+                <% const leasesOptions = leases; %>
+                <% for ( let i = 0; i < leasesOptions.length; i++ ) { %>
+                    <option value='<%= leasesOptions[i].apartment._id %>'><%= leasesOptions[i].apartment.roomNumber %></option>
+                <% } %>
+
+            </select>
+            <div class="invalid-feedback">
+                You need to select the apartment that you are requesting service for.
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Please tell us about the issue of your apartment.</label>
+            <textarea name="description" class="form-control" required rows="5"></textarea>
+            <div class="invalid-feedback">
+                You need to tell us the issue of your apartment.
+            </div>
+        </div>
+
+
+
+    <hr class="my-4">
+
+    <div class="row g-3">
+        <div class="col-md-6">
+            <button class="w-100 btn btn-success btn-lg" type="submit">Submit</button>
+        </div>
+        <div class="col-md-6">
+            <a class="w-100 btn btn-outline-dark btn-lg" href="/user/requests" role="button">Cancel</a>
+        </div>
+    </div>
+</form>
+
+
+</main>
+
+<script src="/scripts/form-validation.js"></script>
+
+<%- include('partials/footer'); -%>
