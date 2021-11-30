@@ -1,0 +1,70 @@
+<%- include('partials/header'); -%>
+
+<%- include('partials/navbar-admin'); -%>
+
+<main class="container pt-4">
+
+    <% if (requests.length === 0) { %>
+    <div class="p-5 bg-light rounded">
+        <h2>No Requests</h2>
+        <p>All requests have been proccessed.</p>
+    </div>
+    <% } %>
+
+    <% requests.forEach(function(request){ %>
+
+        <div class="m-3 p-4 bg-light rounded">
+            <div class="row">
+                <div class="col-md-8 p-3">
+                    <p>
+                        Received on: <%= request.created_on.toISOString().split('T')[0] %> 
+                    </p> 
+                    <p>
+                        Status: <%= request.status %> 
+                    </p>
+                    <p>
+                        <i class="fas fa-user"></i>
+                        <%= request.tenants.firstName %> <%= request.tenants.lastName %> 
+                    </p> 
+                    <p> 
+                        <i class="fas fa-envelope"></i>
+                        <%= request.tenants.email %> 
+                    </p>
+                    <p> 
+                        <i class="fas fa-comment"></i>
+                        <%= request.description %>
+                    </p>
+                </div>
+                
+                <div class="col-md-4 p-3">
+                    <p> 
+                        <a class="w-75 btn btn-outline-primary btn-sm" href="mailto:<%=request.tenants.email%>?subject=RE: Your Request for <%=request.apartment.roomNumber%>">
+                            <i class="fas fa-reply"></i> Reply to Requester
+                        </a>
+                    </p>
+                    <p> 
+                        <a class="w-75 btn btn-outline-primary btn-sm" href="mailto:?subject=Request for <%=request.apartment.roomNumber%>&body=<%=request.description%>">
+                            <i class="fas fa-share"></i> Forward Request
+                        </a>
+                    </p>
+                    <p>
+                        <form action="/admin/requests/update/<%= request._id %>/needs follow up" method="POST">
+                            <button class="w-75 btn btn-outline-warning btn-sm" type="submit"><i class="fas fa-flag"></i> Needs Follow Up</button>
+                        </form>
+                    </p>
+                    <p>
+                        <form action="/admin/requests/update/<%= request._id %>/closed" method="POST">
+                            <button class="w-75 btn btn-outline-danger btn-sm" type="submit"><i class="fas fa-check-circle"></i> Close Request</button>
+                        </form>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+    <% }) %>
+    
+
+</main>
+
+<%- include('partials/footer'); -%>

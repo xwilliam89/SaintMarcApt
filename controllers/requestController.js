@@ -56,10 +56,53 @@ const request_create_post = function (req, res) {
 }
 
 
+const manage_request_get = function (req, res) {
+
+    Request.find({ status: { $ne: "closed" } })
+        .populate([
+            {
+                path: "tenants",
+                select: "firstName lastName email"
+            },
+            {
+                path: "apartment",
+                select: "roomNumber"
+            }
+        ])
+        .exec(function (err, foundRequests) {
+            if (!err) {
+                res.render("manage-requests", { requests: foundRequests });
+            }
+        });
+
+}
+
+
+const manage_request_update_post = function (req, res) {
+
+    const query = {_id: req.params._id};
+    const update = {
+      status: req.params.status,
+      changed_on: Date.now()
+    };
+  
+    Request.findOneAndUpdate(query, update, function(err){
+      if (!err) {
+        res.redirect("/admin/requests");
+      } else {
+        console.log(err);
+      }
+    });
+
+}
+
+
 // Export
 
 module.exports = {
     request_get,
     request_create_get,
-    request_create_post
+    request_create_post,
+    manage_request_get,
+    manage_request_update_post
 };

@@ -14,6 +14,10 @@ router.get("/user/requests/create-request", checkUserAuth, requestController.req
 
 router.post("/user/requests/create-request", checkUserAuth, requestController.request_create_post);
 
+router.get("/admin/requests", checkAdminAuth, requestController.manage_request_get);
+
+router.post("/admin/requests/update/:_id/:status", checkAdminAuth, requestController.manage_request_update_post);
+
 // Export
 
 module.exports = router;
